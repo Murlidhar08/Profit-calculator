@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SheetFlow - Edit Entry</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#003ea8",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#dbe1ff",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-secondary-container": "#007230",
+                        "outline-variant": "#c3c6d7",
+                        "primary": "#004ac6",
+                        "surface-container-high": "#dce9ff",
+                        "primary-container": "#2563eb",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "tertiary": "#943700",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#360f00",
+                        "tertiary-container": "#bc4800",
+                        "on-surface-variant": "#434655",
+                        "inverse-surface": "#213145",
+                        "tertiary-fixed": "#ffdbcd",
+                        "secondary-container": "#7cf994",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-secondary-fixed": "#002109",
+                        "surface": "#f8f9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#ffede6",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#62df7d",
+                        "on-error-container": "#93000a",
+                        "on-background": "#0b1c30",
+                        "secondary-fixed": "#7ffc97",
+                        "surface-tint": "#0053db",
+                        "secondary": "#006e2d",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "surface-container-low": "#eff4ff",
+                        "on-primary-container": "#eeefff",
+                        "outline": "#737686",
+                        "surface-dim": "#cbdbf5",
+                        "surface-variant": "#d3e4fe",
+                        "inverse-primary": "#b4c5ff",
+                        "on-surface": "#0b1c30",
+                        "on-primary": "#ffffff",
+                        "surface-container": "#e5eeff",
+                        "background": "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-secondary-fixed-variant": "#005320"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom ghost input focus animation */
+        .ghost-input {
+            border: none;
+            border-bottom: 1px solid rgba(115, 118, 134, 0.2);
+            transition: border-bottom 0.3s ease;
+        }
+        .ghost-input:focus {
+            border-bottom: 2px solid #004ac6;
+            ring: 0;
+            outline: none;
+            box-shadow: none;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface min-h-screen">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9ff]/80 dark:bg-[#0b1c30]/80 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="close up professional headshot of a smiling business person with soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBvXrp6yCULn-Ee6H5MK9VEqFHesOxOdRU_tiqMIQvGPRqu0h0XSZpW3P-uSXwZs8CiXVZ49aSzkZUzyr5OkreTDMjA9Waw_MXa2uHFb9HQcfRrjwbQCTHTLjHeRe85gshq_wsKmWo5X3GYwT6snZHfern_XzUA58-CS1Nm1m0V-PvYxFwlnApZeHgWjRBLCMJY6UHD8cwKmas5GjiyCodNiP8WPLaYu1dtquoyhg4mAio7HfYHOfVKVN_-DDf4H87p6U14w1pVf4K"/>
+</div>
+<span class="font-headline font-extrabold text-2xl tracking-tight text-[#0b1c30] dark:text-white">SheetFlow</span>
+</div>
+<div class="flex items-center gap-4">
+</div>
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto">
+<!-- Content Header -->
+<div class="mb-10">
+<h1 class="font-headline font-extrabold text-4xl text-on-surface tracking-tight mb-2">New Entry</h1>
+<p class="text-on-surface-variant font-medium">Record a new transaction to your digital ledger.</p>
+</div>
+<!-- Form Area -->
+<div class="bg-surface-container-lowest rounded-3xl p-8 shadow-none space-y-8">
+<!-- Title Section -->
+<div class="space-y-2">
+<label class="block font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant px-1">Title</label>
+<input class="ghost-input w-full px-1 py-3 text-lg font-medium text-on-surface bg-transparent focus:ring-0 focus:border-primary" placeholder="e.g. Vintage Oak Desk" type="text"/>
+</div>
+<!-- Description Section -->
+<div class="space-y-2">
+<label class="block font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant px-1">Description</label>
+<textarea class="ghost-input w-full px-1 py-3 text-base text-on-surface bg-transparent resize-none focus:ring-0 focus:border-primary" placeholder="Brief details about the item..." rows="3"></textarea>
+</div>
+<!-- Financials Grid (Asymmetric Density) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+<div class="space-y-2">
+<label class="block font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant px-1">Buy Price</label>
+<div class="relative flex items-center">
+<span class="absolute left-1 text-on-surface-variant font-headline font-bold">₹</span>
+<input class="ghost-input w-full pl-6 py-3 text-xl font-headline font-bold text-on-surface bg-transparent focus:ring-0 focus:border-primary" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="block font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant px-1">Repair Cost</label>
+<div class="relative flex items-center">
+<span class="absolute left-1 text-on-surface-variant font-headline font-bold">₹</span>
+<input class="ghost-input w-full pl-6 py-3 text-xl font-headline font-bold text-on-surface bg-transparent focus:ring-0 focus:border-primary" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="md:col-span-2 space-y-2 pt-4">
+<label class="block font-label text-xs font-semibold uppercase tracking-widest text-on-surface-variant px-1">Sell Price</label>
+<div class="relative flex items-center">
+<span class="absolute left-1 text-on-surface-variant font-headline font-bold text-2xl">₹</span>
+<input class="ghost-input w-full pl-8 py-4 text-3xl font-headline font-extrabold text-primary bg-transparent focus:ring-0 focus:border-primary" placeholder="0.00" type="number"/>
+</div>
+</div>
+</div>
+<!-- Calculated Insight Card (The Financial Architect Touch) -->
+<div class="bg-surface-container-low rounded-2xl p-6 flex items-center justify-between mt-4">
+<div>
+<span class="block font-label text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant mb-1">Estimated Net Profit</span>
+<span class="block font-headline text-2xl font-bold text-secondary">₹0.00</span>
+</div>
+<div class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold">
+                    0.0% ROI
+                </div>
+</div>
+</div>
+<!-- Action Button -->
+<div class="mt-12 flex justify-end">
+<button class="bg-gradient-to-br from-primary to-primary-container text-white px-10 py-4 rounded-xl font-headline font-bold text-lg shadow-lg hover:opacity-90 active:scale-95 transition-all duration-300 flex items-center gap-3">
+<span>Save Entry</span>
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+</button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-8 bg-[#f8f9ff]/90 dark:bg-[#0b1c30]/90 backdrop-blur-md z-50 rounded-t-3xl shadow-[0_-4px_24px_rgba(11,28,48,0.04)]">
+<div class="flex flex-col items-center justify-center text-[#434655] dark:text-[#eff4ff]/70 px-6 py-2 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider">List</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#d3e4fe] dark:bg-[#2563eb]/20 text-[#004ac6] dark:text-[#ffffff] rounded-2xl px-6 py-2 active:scale-90 transition-transform duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider">Add</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#434655] dark:text-[#eff4ff]/70 px-6 py-2 transition-colors active:scale-90 duration-200">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider">Settings</span>
+</div>
+</nav>
+</body></html>

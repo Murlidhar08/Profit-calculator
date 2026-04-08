@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SheetFlow - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9ff;
+            color: #0b1c30;
+        }
+        .font-manrope { font-family: 'Manrope', sans-serif; }
+        .glass-header {
+            background: rgba(248, 249, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-primary-fixed-variant": "#003ea8",
+                      "error-container": "#ffdad6",
+                      "primary-fixed": "#dbe1ff",
+                      "error": "#ba1a1a",
+                      "on-primary-fixed": "#00174b",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-secondary-container": "#007230",
+                      "outline-variant": "#c3c6d7",
+                      "primary": "#004ac6",
+                      "surface-container-high": "#dce9ff",
+                      "primary-container": "#2563eb",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "tertiary": "#943700",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#360f00",
+                      "tertiary-container": "#bc4800",
+                      "on-surface-variant": "#434655",
+                      "inverse-surface": "#213145",
+                      "tertiary-fixed": "#ffdbcd",
+                      "secondary-container": "#7cf994",
+                      "tertiary-fixed-dim": "#ffb596",
+                      "on-secondary-fixed": "#002109",
+                      "surface": "#f8f9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-tertiary-container": "#ffede6",
+                      "on-secondary": "#ffffff",
+                      "secondary-fixed-dim": "#62df7d",
+                      "on-error-container": "#93000a",
+                      "on-background": "#0b1c30",
+                      "secondary-fixed": "#7ffc97",
+                      "surface-tint": "#0053db",
+                      "secondary": "#006e2d",
+                      "on-tertiary-fixed-variant": "#7d2d00",
+                      "surface-container-low": "#eff4ff",
+                      "on-primary-container": "#eeefff",
+                      "outline": "#737686",
+                      "surface-dim": "#cbdbf5",
+                      "surface-variant": "#d3e4fe",
+                      "inverse-primary": "#b4c5ff",
+                      "on-surface": "#0b1c30",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#e5eeff",
+                      "background": "#f8f9ff",
+                      "surface-bright": "#f8f9ff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-secondary-fixed-variant": "#005320"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "fontFamily": {
+                      "headline": ["Manrope"],
+                      "body": ["Inter"],
+                      "label": ["Inter"]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+          min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-[#f8f9ff]/80 backdrop-blur-xl flex items-center justify-between px-6 h-16 w-full border-b border-surface-container-low">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAFxrHbdXutKP8BLyT52saRPWhGmXWQwnsHNBKQ3sB-ZCac-C9KIFjyjGJfoSS1nDa-31eHMs-rB3dqcawMMBAKVALO0mneRXqYPLnVi-ZtPaZVdThC1nbn_02B0wl585SLIVa4vlEpXAWHw0evSuisD0p9BwAjuda9x7tvAlYM4jeRoC32wd4mfHSY18RxqmUNUd1EHRVsWeK_l2sVCDIH8V-022Pc-rkzFfPcqrCCmO56xRSOSs00B8vXnlS2A6dUqSRCApWECLy"/>
+</div>
+<span class="font-manrope font-extrabold text-2xl tracking-tight text-[#0b1c30]">SheetFlow</span>
+</div>
+<!-- Notification icon removed as requested -->
+</header>
+<main class="pt-24 pb-32 px-6 max-w-2xl mx-auto space-y-8">
+<!-- Page Title -->
+<section>
+<h1 class="font-manrope font-bold text-3xl text-on-surface mb-2">Settings</h1>
+<p class="text-on-surface-variant text-sm">Configure your data synchronization and workspace preferences.</p>
+</section>
+<!-- Account Section -->
+<section class="space-y-4">
+<h2 class="font-manrope font-semibold text-lg text-on-surface">Account</h2>
+<div class="bg-surface-container-lowest rounded-full p-4 flex items-center justify-between shadow-sm border border-surface-container-low">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-surface-container flex items-center justify-center rounded-full">
+<img alt="Google Logo" class="w-5 h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtPOdhomPmgQko2RZbFHmK_ikJlGtj1GGEzRNomhkUcIoCSE5LYLo1lB5dNoqG2L6d0zvERuvb412kd8sCvmOPfJ3mTiZMr4pZ0w8JzGSvNFAIrxqiUdeJnxT8CR4cpyxOPW_kkey905sRsF2HrFNNvKESQhJ8v9eV2cspGzKL1AMU7A05PuU8XrHuwe64zo5nbIi5tZ_OcrR-XmY2DbgwFek5iqMUmLZ_56T5iKDQZL4IN5w96aI0koZD0q0_AkwykN1EWMM51HKU"/>
+</div>
+<div>
+<p class="font-semibold text-sm text-on-surface">alex.design@gmail.com</p>
+<p class="text-[10px] text-on-surface-variant">Connected via Google Workspace</p>
+</div>
+</div>
+<button class="px-4 py-2 text-primary font-semibold text-xs hover:bg-surface-container-low rounded-full transition-colors">Switch Account</button>
+</div>
+</section>
+<!-- Data Configuration -->
+<section class="space-y-4">
+<h2 class="font-manrope font-semibold text-lg text-on-surface">Data Configuration</h2>
+<div class="bg-surface-container-low rounded-xl p-1 space-y-1">
+<!-- Google Sheet Name -->
+<div class="bg-surface-container-lowest rounded-xl p-5 group transition-all">
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-2">Connected Google Sheet Name</label>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+<input class="w-full border-none p-0 text-on-surface font-medium focus:ring-0 bg-transparent" placeholder="Enter sheet name..." type="text" value="Q4_Project_Financials_2023"/>
+</div>
+<div class="mt-2 h-0.5 w-full bg-surface-container-low relative overflow-hidden">
+<div class="absolute inset-0 bg-primary-container w-1/2 rounded-full"></div>
+</div>
+</div>
+<!-- Columns & Mapping -->
+<div class="bg-surface-container-lowest rounded-xl p-5">
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-4">Columns &amp; Mapping</label>
+<div class="space-y-2 mb-6">
+<!-- Column List with visible edit icons -->
+<div class="flex items-center justify-between p-3 bg-surface-container-low/30 rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<span class="text-sm font-medium text-on-surface">Title</span>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-lg block" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low/30 rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<span class="text-sm font-medium text-on-surface">Description</span>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-lg block" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low/30 rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<span class="text-sm font-medium text-on-surface">Buy Price (₹)</span>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-lg block" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low/30 rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<span class="text-sm font-medium text-on-surface">Repair Cost (₹)</span>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-lg block" data-icon="edit">edit</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-surface-container-low/30 rounded-lg border border-transparent hover:border-outline-variant transition-all">
+<span class="text-sm font-medium text-on-surface">Sell Price (₹)</span>
+<button class="p-1.5 text-on-surface-variant hover:text-primary transition-colors bg-surface-container rounded-full">
+<span class="material-symbols-outlined text-lg block" data-icon="edit">edit</span>
+</button>
+</div>
+</div>
+<button class="w-full py-3 flex items-center justify-center gap-2 border-2 border-dashed border-primary/20 rounded-xl text-primary font-bold text-sm hover:bg-primary/5 hover:border-primary transition-all">
+<span class="material-symbols-outlined text-xl" data-icon="add">add</span>
+                        Add Column
+                    </button>
+</div>
+</div>
+</section>
+<!-- Preview Preferences -->
+<section class="space-y-4">
+<h2 class="font-manrope font-semibold text-lg text-on-surface">Preview Preferences</h2>
+<div class="bg-surface-container-lowest rounded-xl border border-surface-container-low overflow-hidden">
+<div class="p-5 space-y-6">
+<div class="flex items-center justify-between gap-4">
+<div>
+<p class="text-sm font-semibold text-on-surface">Title</p>
+<p class="text-[11px] text-on-surface-variant">Main heading in list view</p>
+</div>
+<select class="bg-surface-container-low border-none rounded-full px-4 py-2 text-xs font-medium focus:ring-primary/20 min-w-[140px]">
+<option selected="">Title</option>
+<option>Description</option>
+<option>Buy Price (₹)</option>
+<option>Repair Cost (₹)</option>
+<option>Sell Price (₹)</option>
+</select>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div>
+<p class="text-sm font-semibold text-on-surface">Description</p>
+<p class="text-[11px] text-on-surface-variant">Sub-text in list view</p>
+</div>
+<select class="bg-surface-container-low border-none rounded-full px-4 py-2 text-xs font-medium focus:ring-primary/20 min-w-[140px]">
+<option>Title</option>
+<option selected="">Description</option>
+<option>Buy Price (₹)</option>
+<option>Repair Cost (₹)</option>
+<option>Sell Price (₹)</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Actions -->
+<div class="flex gap-3 pt-4">
+<button class="flex-1 py-4 bg-gradient-to-br from-primary to-primary-container text-white font-manrope font-bold rounded-full shadow-lg shadow-primary/20 active:scale-95 transition-transform">
+                Save Changes
+            </button>
+<button class="px-8 py-4 bg-surface-container-high text-on-surface font-manrope font-bold rounded-full active:scale-95 transition-transform">
+                Cancel
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pt-3 pb-8 bg-[#f8f9ff]/90 backdrop-blur-md z-50 shadow-[0_-4px_24px_rgba(11,28,48,0.04)]">
+<a class="flex flex-col items-center justify-center text-[#434655] px-6 py-2 hover:text-[#004ac6] transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="format_list_bulleted">format_list_bulleted</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider">List</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#434655] px-6 py-2 hover:text-[#004ac6] transition-colors active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="add_circle">add_circle</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider">Add</span>
+</a>
+<!-- Active Tab: Settings -->
+<a class="flex flex-col items-center justify-center bg-[#d3e4fe] text-[#004ac6] rounded-2xl px-6 py-2 active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-inter text-[11px] font-semibold uppercase tracking-wider">Settings</span>
+</a>
+</nav>
+</body></html>

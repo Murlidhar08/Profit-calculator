@@ -10,7 +10,7 @@ export interface SheetRow {
 export const fetchSheetData = async (spreadsheetId: string, sheetName: string, accessToken: string): Promise<{ headers: string[], rows: SheetRow[] }> => {
   if (!spreadsheetId || !accessToken) return { headers: [], rows: [] }
 
-  const response = await axios.get(`${GOOGLE_SHEETS_BASE_URL}/${spreadsheetId}/values/${sheetName}!A1:Z1000`, {
+  const response = await axios.get(`${GOOGLE_SHEETS_BASE_URL}/${spreadsheetId}/values/'${sheetName}'!A1:Z1000`, {
     headers: { Authorization: `Bearer ${accessToken}` }
   })
 
@@ -34,8 +34,8 @@ export const fetchSheetData = async (spreadsheetId: string, sheetName: string, a
 
 export const addSheetRow = async (spreadsheetId: string, sheetName: string, headers: string[], rowValues: Record<string, any>, accessToken: string) => {
   const rowArray = headers.map(header => rowValues[header] || '')
-  
-  await axios.post(`${GOOGLE_SHEETS_BASE_URL}/${spreadsheetId}/values/${sheetName}!A1:append?valueInputOption=USER_ENTERED`, 
+
+  await axios.post(`${GOOGLE_SHEETS_BASE_URL}/${spreadsheetId}/values/'${sheetName}'!A1:append?valueInputOption=USER_ENTERED`,
     { values: [rowArray] },
     { headers: { Authorization: `Bearer ${accessToken}` } }
   )
@@ -43,8 +43,8 @@ export const addSheetRow = async (spreadsheetId: string, sheetName: string, head
 
 export const updateSheetRow = async (spreadsheetId: string, sheetName: string, headers: string[], rowIndex: number, rowValues: Record<string, any>, accessToken: string) => {
   const rowArray = headers.map(header => rowValues[header] || '')
-  
-  await axios.put(`${GOOGLE_SHEETS_BASE_URL}/${spreadsheetId}/values/${sheetName}!A${rowIndex}:Z${rowIndex}?valueInputOption=USER_ENTERED`, 
+
+  await axios.put(`${GOOGLE_SHEETS_BASE_URL}/${spreadsheetId}/values/'${sheetName}'!A${rowIndex}:Z${rowIndex}?valueInputOption=USER_ENTERED`,
     { values: [rowArray] },
     { headers: { Authorization: `Bearer ${accessToken}` } }
   )

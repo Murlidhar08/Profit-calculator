@@ -60,7 +60,7 @@ const SettingsPage = () => {
 
       <div className="space-y-6">
         {sections.map((section) => (
-          <motion.div 
+          <motion.div
             key={section.id}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -81,9 +81,9 @@ const SettingsPage = () => {
                       {field.label}
                     </label>
                     {field.key === 'spreadsheetId' && (
-                      <a 
-                        href={`https://docs.google.com/spreadsheets/d/${settings.spreadsheetId}`} 
-                        target="_blank" 
+                      <a
+                        href={`https://docs.google.com/spreadsheets/d/${settings.spreadsheetId}`}
+                        target="_blank"
                         rel="noreferrer"
                         className="text-[10px] font-bold text-primary flex items-center gap-1 hover:underline"
                       >
@@ -91,7 +91,7 @@ const SettingsPage = () => {
                       </a>
                     )}
                   </div>
-                  
+
                   {headers.length > 0 && field.id !== 'connection' && field.key !== 'spreadsheetId' && field.key !== 'sheetName' ? (
                     <select
                       value={(settings as any)[field.key]}
@@ -119,8 +119,8 @@ const SettingsPage = () => {
         <div className="bg-primary/5 rounded-3xl p-6 border border-primary/10 flex gap-4">
           <Info className="w-6 h-6 text-primary shrink-0" />
           <p className="text-sm text-on-surface-variant leading-relaxed">
-            <strong>Spreadsheet ID</strong> can be found in your Google Sheet URL: 
-            <code className="mx-1 bg-primary/10 text-primary px-1 rounded">/spreadsheets/d/[ID]/edit</code>. 
+            <strong>Spreadsheet ID</strong> can be found in your Google Sheet URL:
+            <code className="mx-1 bg-primary/10 text-primary px-1 rounded">/spreadsheets/d/[ID]/edit</code>.
             Ensure your columns are located in the first row.
           </p>
         </div>

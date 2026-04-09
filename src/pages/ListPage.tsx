@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowDownRight, ArrowUpRight, BarChart3, Filter, Search, X } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, BarChart3, ClipboardList, Filter, Search, X } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { fetchSheetData } from '../lib/google-sheets'
@@ -35,13 +35,25 @@ const ListPage = () => {
 
   const allRows = data?.rows || []
 
-  const totalProfit = allRows.reduce((acc, row) => {
+  const stats = allRows.reduce((acc, row) => {
     const buy = parseFloat(row.values[settings.buyColumn]) || 0
     const repair = parseFloat(row.values[settings.repairColumn]) || 0
     const transport = parseFloat(row.values[settings.transportColumn]) || 0
-    const sell = parseFloat(row.values[settings.sellColumn]) || 0
-    return acc + (sell - (buy + repair + transport))
-  }, 0)
+    const totalCost = buy + repair + transport
+
+    const sellText = row.values[settings.sellColumn]
+    const sell = parseFloat(sellText) || 0
+    const isInStock = !sellText || sell === 0
+
+    if (isInStock) {
+      acc.inStockCount += 1
+      acc.inStockSpend += totalCost
+    } else {
+      acc.totalProfit += (sell - totalCost)
+    }
+
+    return acc
+  }, { totalProfit: 0, inStockCount: 0, inStockSpend: 0 })
 
   const filteredRows = allRows.filter(row => {
     const title = (row.values[settings.titleColumn] || '').toLowerCase()
@@ -53,24 +65,77 @@ const ListPage = () => {
   return (
     <div className="p-4 sm:p-6 md:p-10 max-w-5xl mx-auto pb-32">
       {/* Hero Stats - Responsive scaling */}
+      {/* Dashboard Summary - Responsive Layout */}
       <section className="mb-10 sm:mb-16">
-        <p className="text-on-surface-variant font-bold uppercase tracking-[0.2em] text-[10px] sm:text-xs mb-3 text-center sm:text-left opacity-70">Portfolio Net Worth</p>
-        <div className="flex flex-col sm:flex-row items-center sm:items-end justify-between gap-6">
-          <motion.h1
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {/* Main Profit Card */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="font-headline font-black text-5xl sm:text-6xl md:text-7xl tracking-tighter text-on-surface leading-none text-center sm:text-left"
+            className={cn(
+              "md:col-span-2 p-8 sm:p-10 rounded-[2.5rem] text-white shadow-2xl relative overflow-hidden group transition-all duration-700",
+              stats.totalProfit >= 0 ? "bg-primary shadow-primary/30" : "bg-error shadow-error/30"
+            )}
           >
-            {formatCurrency(totalProfit)}
-          </motion.h1>
-          <div className={cn(
-            "flex items-center gap-2 px-5 py-2.5 rounded-2xl font-black text-sm sm:text-base border shadow-sm",
-            totalProfit >= 0
-              ? "bg-secondary-container/20 text-secondary border-secondary/20"
-              : "bg-error-container/20 text-error border-error/20"
-          )}>
-            {totalProfit >= 0 ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownRight className="w-5 h-5" />}
-            <span className="uppercase tracking-widest">{totalProfit >= 0 ? 'Profit' : 'Loss'}</span>
+            <div className="relative z-10">
+              <p className="text-[10px] font-black uppercase tracking-[0.3em] mb-4 opacity-70">Portfolio Net Worth</p>
+              <div className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6">
+                <h2 className="font-headline font-black text-5xl sm:text-6xl tracking-tighter leading-none break-all">
+                  {formatCurrency(stats.totalProfit)}
+                </h2>
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-white/20 w-fit">
+                  {stats.totalProfit >= 0 ? <ArrowUpRight className="w-3 h-3 text-secondary-container" /> : <ArrowDownRight className="w-3 h-3" />}
+                  <span>{stats.totalProfit >= 0 ? 'Realized Profit' : 'Net Loss'}</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-all duration-700 transform group-hover:scale-110">
+              <BarChart3 className="w-32 h-32" />
+            </div>
+            <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-6">
+            {/* Active Inventory Count */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1 }}
+              className="p-8 bg-surface-container-high rounded-4xl border border-outline-variant/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-colors group"
+            >
+              <p className="text-[10px] font-black text-outline uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">Active Inventory</p>
+              <div className="flex items-end justify-between gap-4">
+                <div>
+                  <h3 className="font-headline font-black text-4xl text-on-surface">{stats.inStockCount}</h3>
+                  <p className="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest mt-1">Units In stock</p>
+                </div>
+                <div className="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary shadow-inner">
+                  <ClipboardList className="w-7 h-7" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Inventory Capital */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2 }}
+              className="p-8 bg-surface-container-high rounded-4xl border border-outline-variant/10 shadow-sm flex flex-col justify-between hover:border-primary/30 transition-colors group"
+            >
+              <p className="text-[10px] font-black text-outline uppercase tracking-widest mb-1 group-hover:text-primary transition-colors">Capital In Stock</p>
+              <div className="flex items-end justify-between gap-4">
+                <div className="min-w-0">
+                  <h3 className="font-headline font-black text-3xl text-on-surface truncate">
+                    {formatCurrency(stats.inStockSpend)}
+                  </h3>
+                  <p className="text-[10px] font-bold text-on-surface-variant/60 uppercase tracking-widest mt-1">Total Investment</p>
+                </div>
+                <div className="w-14 h-14 bg-surface-container-lowest border border-outline-variant/10 rounded-2xl flex items-center justify-center text-on-surface/40 shadow-sm group-hover:text-primary transition-colors">
+                  <BarChart3 className="w-7 h-7" />
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -139,8 +204,10 @@ const ListPage = () => {
               const buy = parseFloat(row.values[settings.buyColumn]) || 0
               const repair = parseFloat(row.values[settings.repairColumn]) || 0
               const transport = parseFloat(row.values[settings.transportColumn]) || 0
-              const sell = parseFloat(row.values[settings.sellColumn]) || 0
-              const profit = sell - (buy + repair + transport)
+              const sellText = row.values[settings.sellColumn]
+              const sell = parseFloat(sellText) || 0
+              const isInStock = !sellText || sell === 0
+              const itemProfit = isInStock ? 0 : (sell - (buy + repair + transport))
 
               return (
                 <motion.div
@@ -154,9 +221,17 @@ const ListPage = () => {
                 >
                   <div className={cn(
                     "w-12 md:w-16 h-12 md:h-16 rounded-3xl flex items-center justify-center shrink-0 transition-all duration-700 group-hover:rounded-3xl group-hover:rotate-15",
-                    profit >= 0 ? "bg-secondary-container/10 text-secondary" : "bg-error-container/10 text-error"
+                    isInStock
+                      ? "bg-primary-container/10 text-primary"
+                      : (itemProfit >= 0 ? "bg-secondary-container/10 text-secondary" : "bg-error-container/10 text-error")
                   )}>
-                    {profit >= 0 ? <ArrowUpRight className="w-7 md:w-10 h-7 md:h-10" /> : <ArrowDownRight className="w-7 md:w-10 h-7 md:h-10" />}
+                    {isInStock ? (
+                      <ClipboardList className="w-7 md:w-10 h-7 md:h-10" />
+                    ) : itemProfit >= 0 ? (
+                      <ArrowUpRight className="w-7 md:w-10 h-7 md:h-10" />
+                    ) : (
+                      <ArrowDownRight className="w-7 md:w-10 h-7 md:h-10" />
+                    )}
                   </div>
 
                   <div className="grow min-w-0">
@@ -173,12 +248,12 @@ const ListPage = () => {
                   <div className="text-right shrink-0">
                     <p className={cn(
                       "font-headline font-black text-xl sm:text-2xl tracking-tighter leading-none mb-1",
-                      profit >= 0 ? "text-secondary" : "text-error"
+                      isInStock ? "text-primary" : (itemProfit >= 0 ? "text-secondary" : "text-error")
                     )}>
-                      {formatCurrency(profit)}
+                      {isInStock ? formatCurrency(buy) : formatCurrency(itemProfit)}
                     </p>
                     <p className="text-[9px] font-black text-outline uppercase tracking-widest opacity-30 group-hover:opacity-100 transition-opacity">
-                      Profit
+                      {isInStock ? 'Inventory' : 'Profit'}
                     </p>
                   </div>
                 </motion.div>

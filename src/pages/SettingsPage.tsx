@@ -57,7 +57,7 @@ const SettingsPage = () => {
           placeholder: 'Enter your Google Sheet ID'
         },
         {
-          label: 'Target Tab (Sheet)',
+          label: 'Sheet Tab',
           key: 'sheetName',
           type: 'select',
           options: (sheetNames || []).map(name => ({ value: name, label: name }))
@@ -69,8 +69,8 @@ const SettingsPage = () => {
       title: 'Visual Mapping',
       icon: LayoutGrid,
       fields: [
-        { label: 'Display Title', key: 'titleColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
-        { label: 'Sub-text (Notes)', key: 'descriptionColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Title', key: 'titleColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Description', key: 'descriptionColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
       ]
     },
     {
@@ -78,12 +78,12 @@ const SettingsPage = () => {
       title: 'Financial Logic',
       icon: Calculator,
       fields: [
-        { label: 'Purchase Value', key: 'buyColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
-        { label: 'Secondary Sale', key: 'sellColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
-        { label: 'Restoration Costs', key: 'repairColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
-        { label: 'Logistics (Transport)', key: 'transportColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
-        { label: 'Net Total Cost', key: 'totalCostColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
-        { label: 'Final Profit/Yield', key: 'profitColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Buying Price', key: 'buyColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Selling Price', key: 'sellColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Repair Cost', key: 'repairColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Transport', key: 'transportColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Total Cost', key: 'totalCostColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
+        { label: 'Profit', key: 'profitColumn', type: 'select', options: headers.map(h => ({ value: h, label: h })) },
       ]
     },
   ]

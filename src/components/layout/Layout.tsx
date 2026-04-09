@@ -1,8 +1,8 @@
-import { Outlet, Link, useNavigate, useLocation } from 'react-router-dom'
-import { useSheetStore } from '../../store/useSheetStore'
-import { LayoutDashboard, Settings, PlusCircle, LogOut } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { LayoutDashboard, LogOut, PlusCircle, Settings } from 'lucide-react'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import { cn } from '../../lib/utils'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useSheetStore } from '../../store/useSheetStore'
 
 const Layout = () => {
   const { user, logout } = useSheetStore()
@@ -50,7 +50,7 @@ const Layout = () => {
       )}
 
       {/* Main Content */}
-      <main className="flex-grow pb-24">
+      <main className="grow pb-24">
         <AnimatePresence mode="wait">
           <motion.div
             key={location.pathname}

@@ -76,6 +76,7 @@
 }
 
 @layer components {
+
   /* Legend style: physical ledger aesthetic */
   .ledger-input {
     @apply bg-transparent border-0 border-b-2 border-outline-variant/30 focus:border-primary focus:ring-0 transition-all duration-300 px-0 outline-none;

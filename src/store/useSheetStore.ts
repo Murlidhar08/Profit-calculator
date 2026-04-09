@@ -49,7 +49,7 @@ export const useSheetStore = create<SheetState>()(
       },
       setUser: (user) => set({ user }),
       setAccessToken: (accessToken) => set({ accessToken }),
-      updateSettings: (newSettings) => 
+      updateSettings: (newSettings) =>
         set((state) => ({ settings: { ...state.settings, ...newSettings } })),
       logout: () => set({ user: null, accessToken: null }),
     }),

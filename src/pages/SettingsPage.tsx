@@ -1,9 +1,9 @@
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Calculator, Check, Columns, Database, Edit3, ExternalLink, Info, LayoutGrid, X } from 'lucide-react'
 import { useState } from 'react'
+import { fetchSheetData, getSheetNames, updateHeaders } from '../lib/google-sheets'
 import { useSheetStore } from '../store/useSheetStore'
-import { ExternalLink, Database, LayoutGrid, Info, Columns, Edit3, Check, X, Calculator } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
-import { fetchSheetData, updateHeaders, getSheetNames } from '../lib/google-sheets'
 
 const SettingsPage = () => {
   const { settings, updateSettings, accessToken } = useSheetStore()
@@ -224,7 +224,7 @@ const SettingsPage = () => {
             </AnimatePresence>
 
             {headers.length === 0 && (
-              <div className="col-span-full py-12 text-center bg-surface-container rounded-[2rem] border-2 border-dashed border-outline-variant/30">
+              <div className="col-span-full py-12 text-center bg-surface-container rounded-4xl border-2 border-dashed border-outline-variant/30">
                 <p className="text-on-surface-variant font-bold text-xs uppercase tracking-widest opacity-50">Discovery Queue Empty</p>
               </div>
             )}

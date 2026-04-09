@@ -1,4 +1,4 @@
-import { ShieldCheck, ArrowLeft, Lock, Eye, FileText } from 'lucide-react'
+import { ArrowLeft, Eye, FileText, Lock, ShieldCheck } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const PrivacyPage = () => {

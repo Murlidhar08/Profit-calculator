@@ -1,4 +1,4 @@
-import { Gavel, ArrowLeft, BadgeCheck, Scale, Globe } from 'lucide-react'
+import { ArrowLeft, BadgeCheck, Gavel, Globe, Scale } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 
 const PolicyPage = () => {

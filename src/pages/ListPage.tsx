@@ -1,11 +1,11 @@
-import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
-import { fetchSheetData } from '../lib/google-sheets'
-import { useSheetStore } from '../store/useSheetStore'
-import { formatCurrency, cn } from '../lib/utils'
-import { ArrowUpRight, ArrowDownRight, Search, Filter, X, BarChart3 } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowDownRight, ArrowUpRight, BarChart3, Filter, Search, X } from 'lucide-react'
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { fetchSheetData } from '../lib/google-sheets'
+import { cn, formatCurrency } from '../lib/utils'
+import { useSheetStore } from '../store/useSheetStore'
 
 const ListPage = () => {
   const { settings, accessToken } = useSheetStore()
@@ -78,7 +78,7 @@ const ListPage = () => {
       {/* Responsive Search bar */}
       <div className="mb-8 sm:mb-12 relative">
         <div className="flex flex-col sm:flex-row items-stretch gap-4">
-          <div className="relative flex-grow">
+          <div className="relative grow">
             <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
               <Search className={cn(
                 "w-5 h-5 transition-colors",
@@ -90,7 +90,7 @@ const ListPage = () => {
               placeholder="Search assets..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-14 pr-12 py-5 sm:py-6 bg-surface-container-low border-0 rounded-[2rem] focus:ring-4 focus:ring-primary/5 transition-all text-on-surface font-headline font-bold text-lg sm:text-xl placeholder:text-outline/30 placeholder:font-normal shadow-sm group-hover:shadow-md"
+              className="w-full pl-14 pr-12 py-5 sm:py-6 bg-surface-container-low border-0 rounded-4xl focus:ring-4 focus:ring-primary/5 transition-all text-on-surface font-headline font-bold text-lg sm:text-xl placeholder:text-outline/30 placeholder:font-normal shadow-sm group-hover:shadow-md"
             />
             {searchQuery && (
               <button
@@ -153,13 +153,13 @@ const ListPage = () => {
                   className="group px-4 md:px-6 py-3 md:py-4 bg-surface-container-lowest hover:bg-white rounded-[2.5rem] transition-all duration-500 cursor-pointer shadow-sm hover:shadow-2xl border border-transparent hover:border-outline-variant/20 flex items-center gap-5"
                 >
                   <div className={cn(
-                    "w-12 md:w-16 h-12 md:h-16 rounded-3xl flex items-center justify-center shrink-0 transition-all duration-700 group-hover:rounded-[1.5rem] group-hover:rotate-[15deg]",
+                    "w-12 md:w-16 h-12 md:h-16 rounded-3xl flex items-center justify-center shrink-0 transition-all duration-700 group-hover:rounded-3xl group-hover:rotate-15",
                     profit >= 0 ? "bg-secondary-container/10 text-secondary" : "bg-error-container/10 text-error"
                   )}>
                     {profit >= 0 ? <ArrowUpRight className="w-7 md:w-10 h-7 md:h-10" /> : <ArrowDownRight className="w-7 md:w-10 h-7 md:h-10" />}
                   </div>
 
-                  <div className="flex-grow min-w-0">
+                  <div className="grow min-w-0">
                     <h3 className="font-headline font-black text-xl text-on-surface group-hover:text-primary transition-colors truncate mb-1">
                       {row.values[settings.titleColumn] || 'Log Item'}
                     </h3>
